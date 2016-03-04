@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="fill_parent" android:gravity="center_horizontal" android:layout_gravity="center_horizontal"
+    tools:context=".MainActivity" android:orientation="vertical" tools:deviceIds="wear_round"
+    android:background="@drawable/white_r_logo"
+    android:id="@+id/watchface">
+
+
+
+    <TextView android:id="@+id/det_txt" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe left for representatives,&#xA;Swipe down for 2012 Vote."
+        android:textColor="#222"
+        android:textSize="12sp"
+        android:background="#8FFF"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:padding="5dp"
+        android:layout_gravity="center_horizontal|top" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Details"
+        android:textSize = "14sp"
+        android:visibility="gone"
+        android:id="@+id/det_btn"
+        android:layout_gravity="center_horizontal|bottom" />
+
+
+</LinearLayout>

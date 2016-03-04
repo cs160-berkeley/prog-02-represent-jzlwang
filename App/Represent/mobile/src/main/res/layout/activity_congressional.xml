@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/back_btn"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:background="@android:color/transparent"
+            android:layout_gravity="left|center_vertical" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/r_logo"/>
+    </FrameLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#ccc" />
+
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_margin="4dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="171dp"
+                android:weightSum="6"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <judy.represent.RoundedImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/barbara_a_mikulski"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/rep1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Barbara Mikulski"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:id="@+id/rep1name"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Republican
+                        mikulski@maryland.gov
+                        mikulski.senate.gov
+                        @SenatorBarb"
+                        android:textSize="10sp"
+                        android:textStyle="italic"
+                        android:id="@+id/rep1details"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="I’ve stood sentry over nation’s ocean weather infrastructure, fighting for MD jobs today jobs tomorrow in our coastal economies."
+                        android:textSize="11sp"
+                        android:id="@+id/rep1twitter"
+                        android:gravity="bottom|center_horizontal"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="..."
+                    android:id="@+id/info_btn1"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#ccc" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="171dp"
+                android:weightSum="6"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <judy.represent.RoundedImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/benjamin_l_cardin"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/rep2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Benjamin Cardin"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:id="@+id/rep2name"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Democrat
+                        bencardin@maryland.gov
+                        cardin.senate.gov
+                        @SenatorCardin"
+                        android:textSize="10sp"
+                        android:textStyle="italic"
+                        android:id="@+id/rep2details"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorCardin working hard to protect #chesapeakebay #staythecourse @ChooseCleanH2O @PennFuture"
+                        android:textSize="11sp"
+                        android:id="@+id/rep2twitter"
+                        android:gravity="bottom|center_horizontal"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="..."
+                    android:id="@+id/info_btn2"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#ccc" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="171dp"
+                android:weightSum="6"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <judy.represent.RoundedImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/john_k_delaney"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/rep3" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="John Delaney"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:id="@+id/rep3name"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Republican
+                        delaney@maryland.gov
+                        delaney.senate.gov
+                        @SenatorDelaney"
+                        android:textSize="10sp"
+                        android:textStyle="italic"
+                        android:id="@+id/rep3details"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorCardin working hard to protect #chesapeakebay #staythecourse @ChooseCleanH2O @PennFuture"
+                        android:textSize="11sp"
+                        android:id="@+id/rep3twitter"
+                        android:gravity="bottom|center_horizontal"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="..."
+                    android:id="@+id/info_btn3"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="#ccc" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="171dp"
+                android:weightSum="6"
+                android:id="@+id/extra_rep"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <judy.represent.RoundedImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:src="@drawable/chris_van_hollen"
+                        android:layout_marginTop="25dp"
+                        android:id="@+id/rep4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Chris Van Hollen"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:id="@+id/rep4name"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Democrat
+                        vanhollen@maryland.gov
+                        vanhollen.senate.gov
+                        @SenatorVanHollen"
+                        android:textSize="10sp"
+                        android:textStyle="italic"
+                        android:id="@+id/rep4details"
+                        android:gravity="top|center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorCardin working hard to protect #chesapeakebay #staythecourse @ChooseCleanH2O @PennFuture"
+                        android:textSize="11sp"
+                        android:id="@+id/rep4twitter"
+                        android:gravity="bottom|center_horizontal"/>
+
+                </LinearLayout>
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="..."
+                    android:id="@+id/info_btn4"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
