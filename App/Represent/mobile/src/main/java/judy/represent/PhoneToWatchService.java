@@ -12,6 +12,8 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.util.ArrayList;
+
 public class PhoneToWatchService extends Service {
 
     private GoogleApiClient mApiClient;
@@ -20,6 +22,7 @@ public class PhoneToWatchService extends Service {
     public void onCreate() {
         super.onCreate();
         //initialize the googleAPIClient for message passing
+        final Service _this = this;
         mApiClient = new GoogleApiClient.Builder( this )
                 .addApi( Wearable.API )
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
@@ -45,8 +48,7 @@ public class PhoneToWatchService extends Service {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
         Bundle extras = intent.getExtras();
-        final String ZIP = extras.getString("ZIP");
-        final String LOC = extras.getString("LOC");
+        final String mExtra = extras.getString("INFOSTRING");
 
         // Send the message with the cat name
         new Thread(new Runnable() {
@@ -55,11 +57,7 @@ public class PhoneToWatchService extends Service {
                 //first, connect to the apiclient
                 mApiClient.connect();
                 //now that you're connected, send a massage with the cat name
-                if (ZIP.equals("None")) {
-                    sendMessage("/LOC", LOC);
-                } else {
-                    sendMessage("/ZIP", ZIP);
-                }
+                if (mExtra != null) sendMessage("/INFOSTRING", mExtra);
             }
         }).start();
 

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class WatchToPhoneService extends Service implements GoogleApiClient.ConnectionCallbacks {
+public class WatchToPhoneService extends Service {
 
     private GoogleApiClient mWatchApiClient;
     private List<Node> nodes = new ArrayList<>();
@@ -36,7 +36,15 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         //initialize the googleAPIClient for message passing
         mWatchApiClient = new GoogleApiClient.Builder( this )
                 .addApi( Wearable.API )
-                .addConnectionCallbacks(this)
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(Bundle connectionHint) {
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int cause) {
+                    }
+                })
                 .build();
         //and actually connect it (in onStartCommand)
     }
@@ -50,17 +58,12 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     @Override
     public int onStartCommand (Intent intent, int flags, int startId) {
         final Bundle extras = intent.getExtras();
-
+        final String infoString = extras.getString("INFOSTRING");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mWatchApiClient.connect();
-                if (extras.getString("RANDLOC").equals("None")) {
-                    details = "details";
-                } else if (extras.getString("RANDLOC").startsWith("Loc: ")) {
-                    Log.d("T", "does it ever get here?");
-                    location = extras.getString("RANDLOC");
-                }
+                if (infoString != null) sendMessage("/INFOSTRING", infoString);
             }
         }).start();
 
@@ -74,39 +77,17 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         return null;
     }
 
-    @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
-    public void onConnected(final Bundle bundle) {
-        Log.d("T", "in onconnected");
-        Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
-                .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-                    @Override
-                    public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
-                        nodes = getConnectedNodesResult.getNodes();
-                        Log.d("T", "found nodes");
-                        //when we find a connected node, we populate the list declared above
-                        //finally, we can send a message
-                        if (location != null) {
-                            sendMessage("/random_location", location);
-                            location = null;
-                            Log.d("T", "sent location");
-                        }
-                        if (details != null) {
-                            sendMessage("/get_details", details);
-                            details = null;
-                            Log.d("T", "sent details request");
-                        }
-                    }
-                });
-    }
-
-    @Override //we need this to implement GoogleApiClient.ConnectionsCallback
-    public void onConnectionSuspended(int i) {}
-
     private void sendMessage(final String path, final String text ) {
-        for (Node node : nodes) {
-            Wearable.MessageApi.sendMessage(
-                    mWatchApiClient, node.getId(), path, text.getBytes());
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes( mWatchApiClient ).await();
+                for (Node node : nodes.getNodes()) {
+                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
+                            mWatchApiClient, node.getId(), path, text.getBytes() ).await();
+                }
+            }
+        }).start();
     }
 
 }

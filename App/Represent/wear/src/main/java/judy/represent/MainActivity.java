@@ -3,6 +3,7 @@ package judy.represent;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,6 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import junit.framework.Assert;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class MainActivity extends Activity implements SensorEventListener {
@@ -25,6 +33,7 @@ public class MainActivity extends Activity implements SensorEventListener {
     private LinearLayout watchFace;
     private TextView detText;
     int index = 0;
+    private ArrayList<String> reps = new ArrayList<String>();
 
     private float mLastX, mLastY, mLastZ;
     private SensorManager mSensorManager;
@@ -46,45 +55,67 @@ public class MainActivity extends Activity implements SensorEventListener {
         watchFace = (LinearLayout) findViewById(R.id.watchface);
         detText = (TextView) findViewById(R.id.det_txt);
 
-        final Integer[] reps = {R.drawable.chris_van_hollen, R.drawable.barbara_a_mikulski, R.drawable.benjamin_l_cardin, R.drawable.john_k_delaney};
-        final String[] repnames = {"Chris Van Hollen\nDemocrat", "Barbara Mikulski\nRepublican", "Benjamin Cardin\nDemocrat", "John Delaney\nRepublican"};
-        watchFace.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
-            public void onSwipeLeft() {
-                mDetBtn.setVisibility(View.VISIBLE);
-                int numReps = reps.length;
-                index = (index + 1)%numReps;
-                watchFace.setBackgroundResource(reps[index]);
-                detText.setText(repnames[index]);
-            }
-
-            public void onSwipeBottom() {
-                Intent toVote = new Intent(getBaseContext(), VoteActivity.class);
-                startActivity(toVote);
-            }
-
-            public void onSwipeTop() {
-                Intent toMain = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(toMain);
-            }
-        });
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-
         if (extras != null) {
-            String locInfo = extras.getString("INFO");
-            Toast.makeText(MainActivity.this, "ZIP: " + locInfo, Toast.LENGTH_SHORT).show();
-        }
+            final String infoString = extras.getString("INFOSTRING");
 
-        mDetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("T", "BLOOP BLOOP");
-                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-                sendIntent.putExtra("RANDLOC", "None");
-                startService(sendIntent);
+            final ArrayList<String> mExtra = new ArrayList<String>(Arrays.asList(infoString.split("jooby")));
+            String jsonResults = mExtra.get(3);
+
+            try {
+                JSONObject jObject = new JSONObject(jsonResults);
+                JSONArray jArray = jObject.getJSONArray("results");
+                if (jArray == null) {
+                    Log.d("T", "dis shit is NULL AS FUCK!!!!");
+                }
+                for (int i = 0; i < jArray.length(); i++) {
+                    String name = jArray.getJSONObject(i).getString("first_name") + " " + jArray.getJSONObject(i).getString("last_name");
+                    String party = jArray.getJSONObject(i).getString("party");
+                    reps.add(name + "\n" + party);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+
+//        final Integer[] reps = {R.drawable.chris_van_hollen, R.drawable.barbara_a_mikulski, R.drawable.benjamin_l_cardin, R.drawable.john_k_delaney};
+//        final String[] repnames = {"Chris Van Hollen\nDemocrat", "Barbara Mikulski\nRepublican", "Benjamin Cardin\nDemocrat", "John Delaney\nRepublican"};
+            watchFace.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+                public void onSwipeLeft() {
+                    mDetBtn.setVisibility(View.VISIBLE);
+                    int numReps = reps.size();
+                    index = (index + 1) % numReps;
+//                watchFace.setBackgroundResource(reps[index]);
+                    detText.setText(reps.get(index));
+                }
+
+                public void onSwipeBottom() {
+                    Log.d("swipe", "got swipe bottom");
+                    Intent toVote = new Intent(getBaseContext(), VoteActivity.class);
+                    toVote.putExtra("OBAMA", mExtra.get(4));
+                    toVote.putExtra("ROMNEY", mExtra.get(5));
+                    toVote.putExtra("COUNTY", mExtra.get(6));
+                    toVote.putExtra("INFOSTRING", infoString);
+                    startActivity(toVote);
+                }
+
+                public void onSwipeTop() {
+                    Intent toMain = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(toMain);
+                }
+            });
+
+            mDetBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("T", "BLOOP BLOOP");
+                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                    String msg = Integer.toString(index) + "jooby" + infoString;
+                    sendIntent.putExtra("INFOSTRING", msg);
+                    startService(sendIntent);
+                }
+            });
+        }
     }
 
     protected void onResume() {

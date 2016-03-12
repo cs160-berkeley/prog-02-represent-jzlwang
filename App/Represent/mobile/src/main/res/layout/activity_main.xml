@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="225dp"
+    android:layout_gravity="center_horizontal"
     android:layout_height="match_parent">
 
+    <com.twitter.sdk.android.core.identity.TwitterLoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+
     <ImageView
-        android:layout_width="200px"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:id="@+id/logo_img"
         android:src="@drawable/r_logo"
         android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="500px"
+        android:minHeight="20dip"
+        android:minWidth="20dip"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Use current location"
+        android:textColor="#2F80ED"
+        android:background="@drawable/button"
         android:id="@+id/curr_loc_btn"
         android:layout_gravity="center_horizontal" />
 
     <LinearLayout
-        android:layout_width="550px"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="7"
         android:orientation="horizontal"
@@ -32,7 +43,7 @@
             android:layout_height="1dip"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="#ccc" />
-        <TextView
+        <judy.represent.MainTextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -47,23 +58,29 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="500px"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal">
 
         <EditText
-            android:layout_width="350px"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:hint="ZIP code"
             android:inputType="numberDecimal"
             android:maxLength="5"
             android:id="@+id/zip"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal|bottom" />
         <Button
+            android:minHeight="20dip"
+            android:minWidth="20dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Go"
+            android:textColor="#2F80ED"
+            android:background="@drawable/button"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/go_btn" />
     </LinearLayout>
 </LinearLayout>

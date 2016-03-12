@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:twittersdk="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Header -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/back_btn"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:background="@android:color/transparent"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="7.5dp"
+            android:background="@drawable/back_btn_blue"
             android:layout_gravity="left|center_vertical" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_gravity="center_horizontal|center_vertical"
             android:src="@drawable/r_logo"/>
     </FrameLayout>
 
+    <!-- Divider -->
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="#ccc" />
 
+    <!-- Page -->
     <ScrollView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -37,72 +43,91 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- First Representative -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="171dp"
-                android:weightSum="6"
+                android:layout_height="200dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <judy.represent.RoundedImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:src="@drawable/barbara_a_mikulski"
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/rep1" />
-
-                </LinearLayout>
+                <judy.represent.RoundedImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rep1" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
+                    android:id="@+id/repinfo1"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical|center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Barbara Mikulski"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
-                        android:id="@+id/rep1name"
+                        android:id="@+id/repname1"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Republican
-                        mikulski@maryland.gov
-                        mikulski.senate.gov
-                        @SenatorBarb"
-                        android:textSize="10sp"
+                        android:text="Republican"
+                        android:textSize="12sp"
                         android:textStyle="italic"
-                        android:id="@+id/rep1details"
+                        android:id="@+id/repparty1"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="I’ve stood sentry over nation’s ocean weather infrastructure, fighting for MD jobs today jobs tomorrow in our coastal economies."
-                        android:textSize="11sp"
-                        android:id="@+id/rep1twitter"
-                        android:gravity="bottom|center_horizontal"/>
+                        android:text="mikulski@maryland.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repemail1"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="mikulski.senate.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repwebsite1"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorBarb"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/reptwitter1"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:isScrollContainer="true"
+                        android:textSize="14sp"
+                        android:background="#66ffffff"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/reptweet1"/>
 
                 </LinearLayout>
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="..."
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/more_info_blue"
                     android:id="@+id/info_btn1"
-                    android:layout_gravity="center_vertical"/>
+                    android:gravity="end"
+                    android:layout_gravity="center_vertical|end"/>
             </LinearLayout>
 
             <View
@@ -110,72 +135,91 @@
                 android:layout_height="1dip"
                 android:background="#ccc" />
 
+            <!-- Second Representative -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="171dp"
-                android:weightSum="6"
+                android:layout_height="200dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <judy.represent.RoundedImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:src="@drawable/benjamin_l_cardin"
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/rep2" />
-
-                </LinearLayout>
+                <judy.represent.RoundedImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rep2" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
+                    android:id="@+id/repinfo2"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical|center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Benjamin Cardin"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
-                        android:id="@+id/rep2name"
+                        android:id="@+id/repname2"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Democrat
-                        bencardin@maryland.gov
-                        cardin.senate.gov
-                        @SenatorCardin"
-                        android:textSize="10sp"
+                        android:text="Democrat"
+                        android:textSize="12sp"
                         android:textStyle="italic"
-                        android:id="@+id/rep2details"
+                        android:id="@+id/repparty2"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="\@SenatorCardin working hard to protect #chesapeakebay #staythecourse @ChooseCleanH2O @PennFuture"
-                        android:textSize="11sp"
-                        android:id="@+id/rep2twitter"
-                        android:gravity="bottom|center_horizontal"/>
+                        android:text="bencardin@maryland.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repemail2"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="cardin.senate.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repwebsite2"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorCardin"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/reptwitter2"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:isScrollContainer="true"
+                        android:textSize="14sp"
+                        android:background="#66ffffff"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/reptweet2"/>
 
                 </LinearLayout>
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="..."
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/more_info_blue"
                     android:id="@+id/info_btn2"
-                    android:layout_gravity="center_vertical"/>
+                    android:gravity="end"
+                    android:layout_gravity="center_vertical|end"/>
             </LinearLayout>
 
             <View
@@ -183,72 +227,91 @@
                 android:layout_height="1dip"
                 android:background="#ccc" />
 
+            <!-- Third Representative -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="171dp"
-                android:weightSum="6"
+                android:layout_height="200dp"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <judy.represent.RoundedImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:src="@drawable/john_k_delaney"
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/rep3" />
-
-                </LinearLayout>
+                <judy.represent.RoundedImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rep3" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
+                    android:id="@+id/repinfo3"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical|center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="John Delaney"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
-                        android:id="@+id/rep3name"
+                        android:id="@+id/repname3"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Republican
-                        delaney@maryland.gov
-                        delaney.senate.gov
-                        @SenatorDelaney"
-                        android:textSize="10sp"
+                        android:text="Republican"
+                        android:textSize="12sp"
                         android:textStyle="italic"
-                        android:id="@+id/rep3details"
+                        android:id="@+id/repparty3"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="\@SenatorCardin working hard to protect #chesapeakebay #staythecourse @ChooseCleanH2O @PennFuture"
-                        android:textSize="11sp"
-                        android:id="@+id/rep3twitter"
-                        android:gravity="bottom|center_horizontal"/>
+                        android:text="delaney@maryland.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repemail3"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="delaney.senate.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repwebsite3"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorDelaney"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/reptwitter3"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:isScrollContainer="true"
+                        android:textSize="14sp"
+                        android:background="#66ffffff"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/reptweet3"/>
 
                 </LinearLayout>
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="..."
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/more_info_blue"
                     android:id="@+id/info_btn3"
-                    android:layout_gravity="center_vertical"/>
+                    android:gravity="end"
+                    android:layout_gravity="center_vertical|end"/>
             </LinearLayout>
 
             <View
@@ -256,76 +319,92 @@
                 android:layout_height="1dip"
                 android:background="#ccc" />
 
+            <!-- Fourth Representative -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="171dp"
-                android:weightSum="6"
+                android:layout_height="200dp"
                 android:id="@+id/extra_rep"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:orientation="horizontal">
 
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <judy.represent.RoundedImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|center_horizontal"
-                        android:src="@drawable/chris_van_hollen"
-                        android:layout_marginTop="25dp"
-                        android:id="@+id/rep4" />
-
-                </LinearLayout>
+                <judy.represent.RoundedImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|start"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rep4" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="3"
+                    android:id="@+id/repinfo4"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical|center_horizontal"
                     android:orientation="vertical">
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Chris Van Hollen"
-                        android:textSize="16sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"
-                        android:id="@+id/rep4name"
+                        android:id="@+id/repname4"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Democrat
-                        vanhollen@maryland.gov
-                        vanhollen.senate.gov
-                        @SenatorVanHollen"
-                        android:textSize="10sp"
+                        android:text="Democrat"
+                        android:textSize="12sp"
                         android:textStyle="italic"
-                        android:id="@+id/rep4details"
+                        android:id="@+id/repparty4"
                         android:gravity="top|center_horizontal"/>
 
-                    <TextView
+                    <judy.represent.MainTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="\@SenatorCardin working hard to protect #chesapeakebay #staythecourse @ChooseCleanH2O @PennFuture"
-                        android:textSize="11sp"
-                        android:id="@+id/rep4twitter"
-                        android:gravity="bottom|center_horizontal"/>
+                        android:text="vanhollen@maryland.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repemail4"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="vanhollen.senate.gov"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/repwebsite4"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="\@SenatorVanHollen"
+                        android:textSize="12sp"
+                        android:textStyle="italic"
+                        android:id="@+id/reptwitter4"
+                        android:gravity="top|center_horizontal"/>
+
+                    <judy.represent.MainTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:isScrollContainer="true"
+                        android:textSize="14sp"
+                        android:background="#66ffffff"
+                        android:layout_marginBottom="5dp"
+                        android:layout_gravity="bottom"
+                        android:id="@+id/reptweet4"/>
 
                 </LinearLayout>
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="..."
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/more_info_blue"
                     android:id="@+id/info_btn4"
-                    android:layout_gravity="center_vertical"/>
+                    android:gravity="end"
+                    android:layout_gravity="center_vertical|end"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
